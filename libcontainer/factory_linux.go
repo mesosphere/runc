@@ -151,6 +151,11 @@ func New(root string, options ...func(*LinuxFactory) error) (Factory, error) {
 			return nil, err
 		}
 	}
+	newInitPath, err := utils.CloneBinary(l.InitPath)
+	if err != nil {
+		return nil, err
+	}
+	l.InitPath = newInitPath
 	return l, nil
 }
 
